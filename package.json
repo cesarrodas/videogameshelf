@@ -6,14 +6,19 @@
   "scripts": {
     "lint": "eslint src/**",
     "build": "webpack",
-    "start": "webpack-dev-server",
+    "dev": "webpack-dev-server",
+    "start": "node server",
     "test": "mocha './src/tests/**/*.spec.js' --compilers js:babel-core/register"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.16.0",
     "expect": "^1.20.2",
+    "express": "^4.14.0",
     "mocha": "^3.2.0",
+    "mongodb": "^2.2.22",
+    "mongoose": "^4.7.8",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "webpack": "^1.14.0"
@@ -21,16 +26,17 @@
   "devDependencies": {
     "autoprefixer": "^6.5.4",
     "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "babel-loader": "^6.2.10",
     "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
     "node-sass": "^4.1.0",
+    "postcss-loader": "^1.2.2",
+    "react-addons-test-utils": "^15.4.1",
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
-    "react-addons-test-utils": "^15.4.1",
     "webpack-dev-server": "^1.16.2"
   }
 }
