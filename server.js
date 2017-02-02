@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost:27017/videogames');
 
-const server = app.listen(process.env.PORT || 8080, function() {
+const server = app.listen(process.env.PORT || 3000, function() {
   const port = server.address().port;
   console.log("App now running on port", port);
 });
