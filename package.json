@@ -7,8 +7,8 @@
     "lint": "eslint src/**",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "pre-start": "webpack",
-    "start": "node server",
+    "prestart": "webpack",
+    "start": "node index",
     "test": "mocha './src/tests/**/*.spec.js' --compilers js:babel-core/register"
   },
   "author": "",
