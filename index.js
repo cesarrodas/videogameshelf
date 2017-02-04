@@ -1,25 +1,12 @@
 const express  = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-//const MongoClient = require("mongodb").MongoClient;
-//const username = process.env.MONGO_USER;
-//const password = process.env.MONGO_PW;
-//const url = `mongodb://${username}:${password}@ds139949.mlab.com:39949/videogame_collection`
 
-const mongodb = require("mongodb");
-const mongoose = require("mongoose");
-//const VideoGame = require("./Schemas/videoGame");
 const mongoUtils = require("./mongoUtils");
-
-const VIDEOGAME_COLLECTION = "videogames";
 
 const app = express();
 app.use(express.static(__dirname + "/build"));
 app.use(bodyParser.json());
-
-//mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost:27017/videogames');
 
 const server = app.listen(process.env.PORT || 3000, function() {
   const port = server.address().port;

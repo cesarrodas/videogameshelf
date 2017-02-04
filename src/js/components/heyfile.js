@@ -1,9 +1,10 @@
 import React from 'react';
 
 function getGamesHelper(){
-  const baseUrl = 'http://localhost:3000/games';
+  const baseUrl = 'https://gamecollection.now.sh/games';
   return fetch(baseUrl)
-    .then(res => res.json());
+    .then(res => res.json())
+    .catch(err => console.log(err));
 };
 
 export class Hello extends React.Component {

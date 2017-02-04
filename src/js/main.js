@@ -1,4 +1,4 @@
-import './polyfills.js';
+import '../../polyfills/polyfills';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Hello } from './components/heyfile';

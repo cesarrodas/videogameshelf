@@ -1,8 +1,18 @@
-const mongodb = require("mongodb");
+const MongoClient = require("mongodb").MongoClient;
+const username = process.env.MONGO_USER;
+const password = process.env.MONGO_PW;
+const url = `mongodb://${username}:${password}@ds139949.mlab.com:39949/videogame_collection`
 const mongoose = require("mongoose");
 const VideoGame = require("./Schemas/videoGame");
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('promise-polyfill');
+
+mongoose.connect(url)
+  .then(() => {
+    console.log("Connected to database.");
+  }).catch((err) => {
+    console.log(err);
+  });
 
 exports.getGames = () =>{
   return VideoGame.find({});
@@ -10,7 +20,6 @@ exports.getGames = () =>{
 
 exports.createGame = (game) => {
   let newGame = new VideoGame();
-  // send req.body as argument to caller
   newGame.title = game.title;
   newGame.description = game.description;
   newGame.img = game.img;

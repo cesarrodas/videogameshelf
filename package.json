@@ -7,8 +7,8 @@
     "lint": "eslint src/**",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "prestart": "webpack",
     "start": "node index",
+    "deploy": "now -e MONGO_USER=@mongouser -e MONGO_PW=@mongopw",
     "test": "mocha './src/tests/**/*.spec.js' --compilers js:babel-core/register"
   },
   "author": "",
