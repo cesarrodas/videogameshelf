@@ -1,15 +1,15 @@
-const MongoClient = require("mongodb").MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const username = process.env.MONGO_USER;
 const password = process.env.MONGO_PW;
 const url = `mongodb://${username}:${password}@ds139949.mlab.com:39949/videogame_collection`
-const mongoose = require("mongoose");
-const VideoGame = require("./Schemas/videoGame");
+const mongoose = require('mongoose');
+const VideoGame = require('./Schemas/videoGame');
 
 mongoose.Promise = require('promise-polyfill');
 
 mongoose.connect(url)
   .then(() => {
-    console.log("Connected to database.");
+    console.log('Connected to database.');
   }).catch((err) => {
     console.log(err);
   });
