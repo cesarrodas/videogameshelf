@@ -6,13 +6,13 @@ export default function gamesReducer(state={
 }, action) {
 
   switch (action.type) {
-    case 'FETCH_GAMES': {
+    case 'FETCH_GAMES_PENDING': {
       return {...state, fetching: true}
     }
     case 'FETCH_GAMES_REJECTED': {
       return {...state, fetching: false, error: action.payload}
     }
-    case 'FETCH_TWEETS_FULFILLED': {
+    case 'FETCH_GAMES_FULFILLED': {
       return {
         ...state,
         fetching: false,
