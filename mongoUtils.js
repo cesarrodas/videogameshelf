@@ -4,8 +4,13 @@ const password = process.env.MONGO_PW;
 const url = `mongodb://${username}:${password}@ds139949.mlab.com:39949/videogame_collection`
 const mongoose = require('mongoose');
 const VideoGame = require('./Schemas/videoGame');
+const Promise = require('promise-polyfill');
 
-mongoose.Promise = require('promise-polyfill');
+if(!global.Promise) {
+  global.Promise = Promise;
+}
+
+mongoose.Promise = global.Promise;
 
 mongoose.connect(url)
   .then(() => {

@@ -24772,10 +24772,24 @@
 	    // }
 
 	    /*
-	     //{JSON.stringify(this.state.games)}
-	    //<button onClick={this.getGames.bind(this)}>Clickme to Fetch</button>
 	    */
 
+	  }, {
+	    key: 'addGame',
+	    value: function addGame() {
+	      var dispatch = this.props.dispatch;
+
+	      var fillerGame = {
+	        title: "splats",
+	        description: "awesome shooting",
+	        img: "great image of majestic moment"
+	      };
+	      dispatch((0, _actions.addGame)(JSON.stringify(fillerGame))).then(function () {
+	        dispatch((0, _actions.fetchGames)());
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -24787,6 +24801,11 @@
 	          'h2',
 	          null,
 	          'Hello World!'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.addGame.bind(this) },
+	          'Click me add Game'
 	        ),
 	        _react2.default.createElement(
 	          'h1',
@@ -24804,10 +24823,6 @@
 	  return { games: state.games.games };
 	};
 
-	// const mapDispatchToProps = dispatch => {
-	//   return bindActionCreators(actions, dispatch);
-	// }
-	// export default connect(mapStateToProps, mapDispatchToProps)(Hello);
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Hello);
 
 /***/ },
@@ -24820,8 +24835,6 @@
 	  value: true
 	});
 	var FETCH_GAMES = exports.FETCH_GAMES = 'FETCH_GAMES';
-	var FETCH_GAMES_REJECTED = exports.FETCH_GAMES_REJECTED = 'FETCH_GAMES_REJECTED';
-	var FETCH_TWEETS_FULFILLED = exports.FETCH_TWEETS_FULFILLED = 'FETCH_TWEETS_FULFILLED';
 	var ADD_GAME = exports.ADD_GAME = 'ADD_GAME';
 	var UPDATE_GAME = exports.UPDATE_GAME = 'UPDATE_GAME';
 	var DELETE_GAME = exports.DELETE_GAME = 'DELETE_GAME';
@@ -24834,6 +24847,17 @@
 	      return res.json();
 	    }).catch(function (err) {
 	      return console.log(err);
+	    })
+	  };
+	};
+
+	var addGame = exports.addGame = function addGame(newGame) {
+	  return {
+	    type: ADD_GAME,
+	    payload: fetch('http://localhost:3000/games', {
+	      method: "POST",
+	      headers: new Headers({ 'content-type': 'application/json' }),
+	      body: newGame
 	    })
 	  };
 	};
@@ -26025,10 +26049,18 @@
 	          games: action.payload
 	        });
 	      }
-	    case 'ADD_GAME':
+	    case 'ADD_GAME_PENDING':
+	      {
+	        return _extends({}, state, { fetching: true });
+	      }
+	    case 'ADD_GAME_REJECTED':
+	      {
+	        return _extends({}, state, { fetching: false, error: action.payload });
+	      }
+	    case 'ADD_GAME_FULFILLED':
 	      {
 	        return _extends({}, state, {
-	          games: [].concat(_toConsumableArray(state.games), [action.payload])
+	          fetching: false
 	        });
 	      }
 	    case 'UPDATE_GAME':

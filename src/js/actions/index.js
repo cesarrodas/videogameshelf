@@ -1,6 +1,4 @@
 export const FETCH_GAMES = 'FETCH_GAMES';
-export const FETCH_GAMES_REJECTED = 'FETCH_GAMES_REJECTED';
-export const FETCH_TWEETS_FULFILLED = 'FETCH_TWEETS_FULFILLED';
 export const ADD_GAME = 'ADD_GAME';
 export const UPDATE_GAME = 'UPDATE_GAME';
 export const DELETE_GAME = 'DELETE_GAME';
@@ -11,4 +9,13 @@ export const fetchGames = () => ({
   payload: fetch('http://localhost:3000/games')
     .then(res => res.json())
     .catch(err => console.log(err))
+});
+
+export const addGame = (newGame) => ({
+  type: ADD_GAME,
+  payload: fetch('http://localhost:3000/games', {
+    method: "POST",
+    headers: new Headers({'content-type': 'application/json'}),
+    body: newGame
+  })
 });

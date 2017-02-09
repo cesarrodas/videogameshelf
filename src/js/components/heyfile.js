@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchGames } from '../actions';
+import { fetchGames, addGame } from '../actions';
 import { bindActionCreators } from 'redux';
 
 // function getGamesHelper(){
@@ -22,16 +22,27 @@ export class Hello extends Component {
   // }
 
   /*
-
-  //{JSON.stringify(this.state.games)}
-  //<button onClick={this.getGames.bind(this)}>Clickme to Fetch</button>
   */
+  addGame() {
+    const { dispatch } = this.props;
+    const fillerGame = {
+      title: "splats",
+      description: "awesome shooting",
+      img: "great image of majestic moment"
+    }
+    dispatch(addGame(JSON.stringify(fillerGame)))
+      .then(() => {
+        dispatch(fetchGames());
+      })
+      .catch((err) => { console.log(err) });
+  }
 
   render(){
     console.log("props: ", this.props);
     return (
       <div className="hello">
         <h2>Hello World!</h2>
+        <button onClick={this.addGame.bind(this)}>Click me add Game</button>
         <h1>My name is cesar!</h1>
       </div>
     );
@@ -42,8 +53,4 @@ const mapStateToProps = state => {
   return { games: state.games.games }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators(actions, dispatch);
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Hello);
 export default connect(mapStateToProps)(Hello);

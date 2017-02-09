@@ -20,10 +20,16 @@ export default function gamesReducer(state={
         games: action.payload
       }
     }
-    case 'ADD_GAME': {
+    case 'ADD_GAME_PENDING': {
+      return {...state, fetching: true}
+    }
+    case 'ADD_GAME_REJECTED': {
+      return {...state, fetching: false, error: action.payload}
+    }
+    case 'ADD_GAME_FULFILLED': {
       return {
         ...state,
-        games: [...state.games, action.payload]
+        fetching: false
       }
     }
     case 'UPDATE_GAME': {

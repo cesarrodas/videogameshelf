@@ -1,11 +1,13 @@
 const express  = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 
 const mongoUtils = require('./mongoUtils');
 
 const app = express();
 app.use(express.static(__dirname + '/build'));
+app.use(favicon(__dirname + '/icons/mario.ico'));
 app.use(bodyParser.json());
 
 const server = app.listen(process.env.PORT || 3000, function() {
