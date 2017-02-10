@@ -10,6 +10,9 @@ app.use(express.static(__dirname + '/build'));
 app.use(favicon(__dirname + '/icons/mario.ico'));
 app.use(bodyParser.json());
 
+
+app.on('error', console.error.bind(console, 'connection error:'));
+
 const server = app.listen(process.env.PORT || 3000, function() {
   const port = server.address().port;
   console.log('App now running on port', port);

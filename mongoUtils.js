@@ -3,16 +3,15 @@ const username = process.env.MONGO_USER;
 const password = process.env.MONGO_PW;
 const url = `mongodb://${username}:${password}@ds139949.mlab.com:39949/videogame_collection`
 const mongoose = require('mongoose');
+const Promise = require('bluebird');
+
+mongoose.Promise = Promise;
+
 const VideoGame = require('./Schemas/videoGame');
-const Promise = require('promise-polyfill');
+const options = { server: { socketOptions: { keepAlive: 300000000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 300000000, connectTimeoutMS : 30000 } } };
 
-if(!global.Promise) {
-  global.Promise = Promise;
-}
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect(url)
+mongoose.connect(url, options)
   .then(() => {
     console.log('Connected to database.');
   }).catch((err) => {

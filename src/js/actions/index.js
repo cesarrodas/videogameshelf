@@ -14,8 +14,24 @@ export const fetchGames = () => ({
 export const addGame = (newGame) => ({
   type: ADD_GAME,
   payload: fetch('http://localhost:3000/games', {
-    method: "POST",
+    method: 'POST',
     headers: new Headers({'content-type': 'application/json'}),
     body: newGame
   })
 });
+
+export const updateGame = (id ,updatedGame) => ({
+  type: UPDATE_GAME,
+  payload: fetch(`http://localhost:3000/games/${id}`, {
+    method: 'PUT',
+    headers: new Headers({'content-type': 'application/json'}),
+    body: updatedGame
+  })
+});
+
+export const deleteGame = (id) => ({
+  type: DELETE_GAME,
+  payload: fetch(`http://localhost:3000/games/${id}`, {
+    method: 'DELETE'
+  })
+})
