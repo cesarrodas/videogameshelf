@@ -3,11 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import Hello from './components/heyfile';
+import App from './components/app';
 import store from './store';
 
 require('../styles/styles.scss');
 
 ReactDOM.render(<Provider store={store}>
-  <Hello />
+  <App />
   </Provider>, document.getElementById('app'));

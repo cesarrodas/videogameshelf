@@ -8,8 +8,8 @@ const Promise = require('bluebird');
 mongoose.Promise = Promise;
 
 const VideoGame = require('./Schemas/videoGame');
-const options = { server: { socketOptions: { keepAlive: 300000000, connectTimeoutMS: 30000 } },
-                replset: { socketOptions: { keepAlive: 300000000, connectTimeoutMS : 30000 } } };
+const options = { server: { socketOptions: { keepAlive: 100000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 100000, connectTimeoutMS : 30000 } } };
 
 mongoose.connect(url, options)
   .then(() => {

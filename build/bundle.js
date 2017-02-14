@@ -58,22 +58,22 @@
 
 	var _reactRedux = __webpack_require__(180);
 
-	var _heyfile = __webpack_require__(218);
+	var _app = __webpack_require__(218);
 
-	var _heyfile2 = _interopRequireDefault(_heyfile);
+	var _app2 = _interopRequireDefault(_app);
 
-	var _store = __webpack_require__(220);
+	var _store = __webpack_require__(221);
 
 	var _store2 = _interopRequireDefault(_store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(232);
+	__webpack_require__(233);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: _store2.default },
-	  _react2.default.createElement(_heyfile2.default, null)
+	  _react2.default.createElement(_app2.default, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -24219,7 +24219,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Hello = undefined;
+	exports.App = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -24227,9 +24227,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _header = __webpack_require__(219);
+
+	var _header2 = _interopRequireDefault(_header);
+
 	var _reactRedux = __webpack_require__(180);
 
-	var _actions = __webpack_require__(219);
+	var _actions = __webpack_require__(220);
 
 	var _redux = __webpack_require__(191);
 
@@ -24241,16 +24245,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Hello = exports.Hello = function (_Component) {
-	  _inherits(Hello, _Component);
+	var App = exports.App = function (_Component) {
+	  _inherits(App, _Component);
 
-	  function Hello() {
-	    _classCallCheck(this, Hello);
+	  function App() {
+	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	  }
 
-	  _createClass(Hello, [{
+	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var _this2 = this;
@@ -24310,47 +24314,124 @@
 	      console.log("props: ", this.props);
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'hello' },
+	        null,
+	        _react2.default.createElement(_header2.default, null),
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Hello World!'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.addGame.bind(this) },
-	          'Click me add Game'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.updateOneGame.bind(this) },
-	          'Click me update first Game'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.deleteOneGame.bind(this) },
-	          'Click me delete first Game'
-	        ),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'My name is cesar!'
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Hello World!'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.addGame.bind(this) },
+	            'Click me add Game'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.updateOneGame.bind(this) },
+	            'Click me update first Game'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.deleteOneGame.bind(this) },
+	            'Click me delete first Game'
+	          ),
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'My name is cesar!'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'exampleInputEmail1' },
+	                'Email address'
+	              ),
+	              _react2.default.createElement('input', { type: 'email', className: 'form-control', id: 'exampleInputEmail1', 'aria-describedby': 'emailHelp', placeholder: 'Enter email' }),
+	              _react2.default.createElement(
+	                'small',
+	                { id: 'emailHelp', className: 'form-text text-muted' },
+	                'We\'ll never share your email with anyone else. '
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'exampleInputPassword1' },
+	                'Password'
+	              ),
+	              _react2.default.createElement('input', { type: 'password', className: 'form-control', id: 'exampleInputPassword1', placeholder: 'Password' })
+	            )
+	          )
 	        )
 	      );
 	    }
 	  }]);
 
-	  return Hello;
+	  return App;
 	}(_react.Component);
 
 	var mapStateToProps = function mapStateToProps(state) {
-	  return { games: state.games.games };
+	  return { state: state.games.games };
 	};
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Hello);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
 
 /***/ },
 /* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Header = function Header() {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement(
+	      "nav",
+	      { className: "navbar navbar-default" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "container-fluid" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "navbar-header" },
+	          _react2.default.createElement(
+	            "a",
+	            { className: "navbar-brand", href: "#" },
+	            _react2.default.createElement("img", { alt: "Brand", height: "80", src: "https://openclipart.org/image/800px/svg_to_png/227918/Video-Game-Controller-Icon.png" })
+	          )
+	        )
+	      )
+	    )
+	  );
+	};
+
+	//<img className="banner" src="http://www.azoosh.com/wp-content/uploads/2014/01/Video-games-banner-cover-photo-type-free-games-console-arcade-images-pic-photos-type-Azoosh.jpg" />
+	exports.default = Header;
+
+/***/ },
+/* 220 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24407,7 +24488,7 @@
 	};
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24418,19 +24499,19 @@
 
 	var _redux = __webpack_require__(191);
 
-	var _reduxLogger = __webpack_require__(221);
+	var _reduxLogger = __webpack_require__(222);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _reduxThunk = __webpack_require__(227);
+	var _reduxThunk = __webpack_require__(228);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxPromiseMiddleware = __webpack_require__(228);
+	var _reduxPromiseMiddleware = __webpack_require__(229);
 
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 
-	var _reducers = __webpack_require__(230);
+	var _reducers = __webpack_require__(231);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24441,7 +24522,7 @@
 	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24452,11 +24533,11 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _core = __webpack_require__(222);
+	var _core = __webpack_require__(223);
 
-	var _helpers = __webpack_require__(223);
+	var _helpers = __webpack_require__(224);
 
-	var _defaults = __webpack_require__(226);
+	var _defaults = __webpack_require__(227);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -24559,7 +24640,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24572,9 +24653,9 @@
 
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(223);
+	var _helpers = __webpack_require__(224);
 
-	var _diff = __webpack_require__(224);
+	var _diff = __webpack_require__(225);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -24701,7 +24782,7 @@
 	}
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24725,7 +24806,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24735,7 +24816,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(225);
+	var _deepDiff = __webpack_require__(226);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -24824,7 +24905,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -25253,7 +25334,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25304,7 +25385,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25332,7 +25413,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25349,7 +25430,7 @@
 
 	exports.default = promiseMiddleware;
 
-	var _isPromise = __webpack_require__(229);
+	var _isPromise = __webpack_require__(230);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -25506,7 +25587,7 @@
 	}
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25527,7 +25608,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25538,7 +25619,7 @@
 
 	var _redux = __webpack_require__(191);
 
-	var _gamesReducer = __webpack_require__(231);
+	var _gamesReducer = __webpack_require__(232);
 
 	var _gamesReducer2 = _interopRequireDefault(_gamesReducer);
 
@@ -25549,7 +25630,7 @@
 	});
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25629,16 +25710,16 @@
 	}
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(233);
+	var content = __webpack_require__(234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(235)(content, {});
+	var update = __webpack_require__(236)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25655,21 +25736,21 @@
 	}
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(234)();
+	exports = module.exports = __webpack_require__(235)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports) {
 
 	/*
@@ -25725,7 +25806,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

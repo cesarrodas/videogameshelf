@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import Header from './header';
 import { connect } from 'react-redux';
 import { fetchGames, addGame, updateGame, deleteGame } from '../actions';
 import { bindActionCreators } from 'redux';
 
-export class Hello extends Component {
+export class App extends Component {
 
   componentDidMount(){
     const { dispatch } = this.props;
@@ -53,19 +54,34 @@ export class Hello extends Component {
   render(){
     console.log("props: ", this.props);
     return (
-      <div className="hello">
-        <h2>Hello World!</h2>
-        <button onClick={this.addGame.bind(this)}>Click me add Game</button>
-        <button onClick={this.updateOneGame.bind(this)}>Click me update first Game</button>
-        <button onClick={this.deleteOneGame.bind(this)}>Click me delete first Game</button>
-        <h1>My name is cesar!</h1>
+      <div>
+        <Header />
+        <div className="container">
+          <h2>Hello World!</h2>
+          <button onClick={this.addGame.bind(this)}>Click me add Game</button>
+          <button onClick={this.updateOneGame.bind(this)}>Click me update first Game</button>
+          <button onClick={this.deleteOneGame.bind(this)}>Click me delete first Game</button>
+
+          <h1>My name is cesar!</h1>
+          <form>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Email address</label>
+              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else. </small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { games: state.games.games }
+  return { state: state.games.games }
 }
 
-export default connect(mapStateToProps)(Hello);
+export default connect(mapStateToProps)(App);
