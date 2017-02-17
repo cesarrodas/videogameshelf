@@ -62,18 +62,22 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _store = __webpack_require__(221);
+	var _home = __webpack_require__(221);
+
+	var _home2 = _interopRequireDefault(_home);
+
+	var _store = __webpack_require__(222);
 
 	var _store2 = _interopRequireDefault(_store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(233);
+	__webpack_require__(234);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: _store2.default },
-	  _react2.default.createElement(_app2.default, null)
+	  _react2.default.createElement(_home2.default, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -24419,7 +24423,7 @@
 	          _react2.default.createElement(
 	            "a",
 	            { className: "navbar-brand", href: "#" },
-	            _react2.default.createElement("img", { alt: "Brand", height: "80", src: "https://openclipart.org/image/800px/svg_to_png/227918/Video-Game-Controller-Icon.png" })
+	            _react2.default.createElement("img", { alt: "Brand", height: "60", src: "https://openclipart.org/image/800px/svg_to_png/227918/Video-Game-Controller-Icon.png" })
 	          )
 	        )
 	      )
@@ -24427,7 +24431,6 @@
 	  );
 	};
 
-	//<img className="banner" src="http://www.azoosh.com/wp-content/uploads/2014/01/Video-games-banner-cover-photo-type-free-games-console-arcade-images-pic-photos-type-Azoosh.jpg" />
 	exports.default = Header;
 
 /***/ },
@@ -24497,29 +24500,85 @@
 	  value: true
 	});
 
-	var _redux = __webpack_require__(191);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _reduxLogger = __webpack_require__(222);
+	var _react = __webpack_require__(3);
 
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	var _react2 = _interopRequireDefault(_react);
 
-	var _reduxThunk = __webpack_require__(228);
+	var _header = __webpack_require__(219);
 
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-	var _reduxPromiseMiddleware = __webpack_require__(229);
-
-	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
-
-	var _reducers = __webpack_require__(231);
-
-	var _reducers2 = _interopRequireDefault(_reducers);
+	var _header2 = _interopRequireDefault(_header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Home = function (_Component) {
+	  _inherits(Home, _Component);
+
+	  function Home() {
+	    _classCallCheck(this, Home);
+
+	    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+	  }
+
+	  _createClass(Home, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_header2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-6' },
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'Video ',
+	              _react2.default.createElement(
+	                'strong',
+	                null,
+	                'Games'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'This website allows you to keep your present or future video game collection in one place. '
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Plan ahead with a list of wishes or keep your highly regarded gem at the top with great descriptions that entice people on the fence.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-6' },
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'I will be the form element.'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Home;
+	}(_react.Component);
+
+	exports.default = Home;
 
 /***/ },
 /* 222 */
@@ -24531,13 +24590,47 @@
 	  value: true
 	});
 
+	var _redux = __webpack_require__(191);
+
+	var _reduxLogger = __webpack_require__(223);
+
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+	var _reduxThunk = __webpack_require__(229);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+	var _reduxPromiseMiddleware = __webpack_require__(230);
+
+	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
+
+	var _reducers = __webpack_require__(232);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
+
+	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _core = __webpack_require__(223);
+	var _core = __webpack_require__(224);
 
-	var _helpers = __webpack_require__(224);
+	var _helpers = __webpack_require__(225);
 
-	var _defaults = __webpack_require__(227);
+	var _defaults = __webpack_require__(228);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -24640,7 +24733,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24653,9 +24746,9 @@
 
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(224);
+	var _helpers = __webpack_require__(225);
 
-	var _diff = __webpack_require__(225);
+	var _diff = __webpack_require__(226);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -24782,7 +24875,7 @@
 	}
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24806,7 +24899,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24816,7 +24909,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(226);
+	var _deepDiff = __webpack_require__(227);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -24905,7 +24998,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -25334,7 +25427,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25385,7 +25478,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25413,7 +25506,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25430,7 +25523,7 @@
 
 	exports.default = promiseMiddleware;
 
-	var _isPromise = __webpack_require__(230);
+	var _isPromise = __webpack_require__(231);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -25587,7 +25680,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25608,7 +25701,7 @@
 	}
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25619,7 +25712,7 @@
 
 	var _redux = __webpack_require__(191);
 
-	var _gamesReducer = __webpack_require__(232);
+	var _gamesReducer = __webpack_require__(233);
 
 	var _gamesReducer2 = _interopRequireDefault(_gamesReducer);
 
@@ -25630,7 +25723,7 @@
 	});
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25710,16 +25803,16 @@
 	}
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(234);
+	var content = __webpack_require__(235);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(236)(content, {});
+	var update = __webpack_require__(237)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25736,10 +25829,10 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(235)();
+	exports = module.exports = __webpack_require__(236)();
 	// imports
 
 
@@ -25750,7 +25843,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports) {
 
 	/*
@@ -25806,7 +25899,7 @@
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
