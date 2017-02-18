@@ -66,13 +66,13 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _store = __webpack_require__(222);
+	var _store = __webpack_require__(223);
 
 	var _store2 = _interopRequireDefault(_store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(234);
+	__webpack_require__(235);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -24413,7 +24413,7 @@
 	    null,
 	    _react2.default.createElement(
 	      "nav",
-	      { className: "navbar navbar-default" },
+	      { className: "navbar navbar-inverse navbar-add" },
 	      _react2.default.createElement(
 	        "div",
 	        { className: "container-fluid" },
@@ -24510,6 +24510,10 @@
 
 	var _header2 = _interopRequireDefault(_header);
 
+	var _form = __webpack_require__(222);
+
+	var _form2 = _interopRequireDefault(_form);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24537,38 +24541,41 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-md-6' },
 	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Video ',
+	              'div',
+	              { className: 'col-md-8 col-md-offset-2 border-info' },
 	              _react2.default.createElement(
-	                'strong',
+	                'h1',
 	                null,
-	                'Games'
+	                'Game ',
+	                _react2.default.createElement(
+	                  'strong',
+	                  null,
+	                  'Collection'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'This website allows you to keep your present or future video game collection in one place. '
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Plan ahead with a list of wishes or keep your highly regarded gem at the top with great descriptions that entice people on the fence.'
 	              )
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'This website allows you to keep your present or future video game collection in one place. '
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Plan ahead with a list of wishes or keep your highly regarded gem at the top with great descriptions that entice people on the fence.'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-md-6' },
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'I will be the form element.'
-	            )
+	            _react2.default.createElement(_form2.default, null)
 	          )
 	        )
 	      );
@@ -24584,35 +24591,94 @@
 /* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _redux = __webpack_require__(191);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _reduxLogger = __webpack_require__(223);
+	var _react = __webpack_require__(3);
 
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-
-	var _reduxThunk = __webpack_require__(229);
-
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-	var _reduxPromiseMiddleware = __webpack_require__(230);
-
-	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
-
-	var _reducers = __webpack_require__(232);
-
-	var _reducers2 = _interopRequireDefault(_reducers);
+	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Form = function (_Component) {
+	  _inherits(Form, _Component);
+
+	  function Form() {
+	    _classCallCheck(this, Form);
+
+	    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+	  }
+
+	  _createClass(Form, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "form",
+	        null,
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          "Enter a video game!"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "form-group row" },
+	          _react2.default.createElement(
+	            "label",
+	            { htmlFor: "gameInput" },
+	            "Name:"
+	          ),
+	          _react2.default.createElement("input", { type: "game", className: "form-control", id: "gameInput", "aria-describedby": "gameName", placeholder: "Enter game" })
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "form-group row" },
+	          _react2.default.createElement(
+	            "label",
+	            { htmlFor: "exampleTextarea" },
+	            "Description: "
+	          ),
+	          _react2.default.createElement("textarea", { className: "form-control", id: "exampleTextarea", rows: "3" }),
+	          _react2.default.createElement(
+	            "small",
+	            { id: "emailHelp", className: "form-text text-muted" },
+	            "Share a short description or experience. "
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "form-group row" },
+	          _react2.default.createElement(
+	            "label",
+	            { htmlFor: "example-url-input", "class": "col-2 col-form-label" },
+	            "Image: "
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "col-10" },
+	            _react2.default.createElement("input", { className: "form-control", type: "url", value: "Enter image link.", id: "example-url-input" })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Form;
+	}(_react.Component);
+
+	exports.default = Form;
 
 /***/ },
 /* 223 */
@@ -24624,13 +24690,47 @@
 	  value: true
 	});
 
+	var _redux = __webpack_require__(191);
+
+	var _reduxLogger = __webpack_require__(224);
+
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+	var _reduxThunk = __webpack_require__(230);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+	var _reduxPromiseMiddleware = __webpack_require__(231);
+
+	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
+
+	var _reducers = __webpack_require__(233);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
+
+	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _core = __webpack_require__(224);
+	var _core = __webpack_require__(225);
 
-	var _helpers = __webpack_require__(225);
+	var _helpers = __webpack_require__(226);
 
-	var _defaults = __webpack_require__(228);
+	var _defaults = __webpack_require__(229);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -24733,7 +24833,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24746,9 +24846,9 @@
 
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(225);
+	var _helpers = __webpack_require__(226);
 
-	var _diff = __webpack_require__(226);
+	var _diff = __webpack_require__(227);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -24875,7 +24975,7 @@
 	}
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24899,7 +24999,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24909,7 +25009,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(227);
+	var _deepDiff = __webpack_require__(228);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -24998,7 +25098,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -25427,7 +25527,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25478,7 +25578,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25506,7 +25606,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25523,7 +25623,7 @@
 
 	exports.default = promiseMiddleware;
 
-	var _isPromise = __webpack_require__(231);
+	var _isPromise = __webpack_require__(232);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -25680,7 +25780,7 @@
 	}
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25701,7 +25801,7 @@
 	}
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25712,7 +25812,7 @@
 
 	var _redux = __webpack_require__(191);
 
-	var _gamesReducer = __webpack_require__(233);
+	var _gamesReducer = __webpack_require__(234);
 
 	var _gamesReducer2 = _interopRequireDefault(_gamesReducer);
 
@@ -25723,7 +25823,7 @@
 	});
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25803,16 +25903,16 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(235);
+	var content = __webpack_require__(236);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
+	var update = __webpack_require__(238)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25829,21 +25929,21 @@
 	}
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(236)();
+	exports = module.exports = __webpack_require__(237)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  border-style: dotted;\n  padding: 40px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports) {
 
 	/*
@@ -25899,7 +25999,7 @@
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
