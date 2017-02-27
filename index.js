@@ -1,4 +1,5 @@
 const express  = require('express');
+const router = express.Router();
 const path = require('path');
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
@@ -8,9 +9,8 @@ const mongoUtils = require('./mongoUtils');
 const app = express();
 app.use(express.static(__dirname + '/build'));
 app.use(favicon(__dirname + '/icons/mario.ico'));
+app.use(router);
 app.use(bodyParser.json());
-
-
 app.on('error', console.error.bind(console, 'connection error:'));
 
 const server = app.listen(process.env.PORT || 3000, function() {
@@ -18,7 +18,7 @@ const server = app.listen(process.env.PORT || 3000, function() {
   console.log('App now running on port', port);
 });
 
-app.get('/games', function(req, res) {
+router.get('/games', function(req, res) {
   mongoUtils.getGames().then((games) => {
     res.json(games);
   })
@@ -27,7 +27,7 @@ app.get('/games', function(req, res) {
   })
 });
 
-app.post("/games", function(req, res) {
+router.post("/games", function(req, res) {
   mongoUtils.createGame(req.body).then((user) => {
     res.json({ message: 'Game created.'});
   })
@@ -36,7 +36,7 @@ app.post("/games", function(req, res) {
   });
 });
 
-app.get('/games/:_id', function(req, res) {
+router.get('/games/:_id', function(req, res) {
   mongoUtils.findGameById(req.params._id).then((user) => {
     res.json(user);
   })
@@ -45,7 +45,7 @@ app.get('/games/:_id', function(req, res) {
   });
 });
 
-app.put('/games/:_id', function(req, res) {
+router.put('/games/:_id', function(req, res) {
   mongoUtils.updateGameById(req.params._id, req.body).then(() => {
     res.json({ message: 'Game updated.'});
   })
@@ -54,11 +54,15 @@ app.put('/games/:_id', function(req, res) {
   });
 });
 
-app.delete('/games/:_id', function(req, res) {
+router.delete('/games/:_id', function(req, res) {
   mongoUtils.deleteGameById(req.params._id).then(() => {
     res.json({ message: 'Game deleted.'});
   })
   .catch((err) => {
     res.send(err);
   });
+});
+
+router.get('*', function (req, res) {
+  res.redirect('/');
 });
