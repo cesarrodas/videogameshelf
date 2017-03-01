@@ -17,3 +17,8 @@ $blue: #2f5575;
   border-style: dotted;
   padding: 40px;
 }
+
+textarea {
+  resize: none;
+  overflow: auto;
+}

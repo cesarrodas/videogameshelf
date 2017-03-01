@@ -64,6 +64,10 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
+	var _header = __webpack_require__(272);
+
+	var _header2 = _interopRequireDefault(_header);
+
 	var _home = __webpack_require__(274);
 
 	var _home2 = _interopRequireDefault(_home);
@@ -87,8 +91,7 @@
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _home2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/collection', component: _collection2.default }),
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/collection', component: _collection2.default })
 	  )
 	), document.getElementById('app'));
 
@@ -29224,13 +29227,9 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
 	      var dispatch = this.props.dispatch;
 
-	      dispatch((0, _actions.fetchGames)()).then(function () {
-	        console.log(_this2.props.games[2]);
-	      });
+	      dispatch((0, _actions.fetchGames)()).then(function () {});
 	    }
 	  }, {
 	    key: 'addGame',
@@ -29326,7 +29325,7 @@
 	              _react2.default.createElement(
 	                'small',
 	                { id: 'emailHelp', className: 'form-text text-muted' },
-	                'We\'ll never share your email with anyone else. '
+	                'We will never share your email with anyone else. '
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -29358,7 +29357,7 @@
 /* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29368,25 +29367,74 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(34);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Header = function Header() {
+	var Header = function Header(_ref) {
+	  var select = _ref.select;
+
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
 	    _react2.default.createElement(
-	      "nav",
-	      { className: "navbar navbar-inverse navbar-add" },
+	      'nav',
+	      { className: 'navbar navbar-default' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "container-fluid" },
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "navbar-header" },
+	          'div',
+	          { className: 'navbar-header' },
 	          _react2.default.createElement(
-	            "a",
-	            { className: "navbar-brand", href: "#" },
-	            _react2.default.createElement("img", { alt: "Brand", height: "60", src: "https://openclipart.org/image/800px/svg_to_png/227918/Video-Game-Controller-Icon.png" })
+	            'button',
+	            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse',
+	              'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'sr-only' },
+	              'Toggle navigation'
+	            ),
+	            _react2.default.createElement('span', { className: 'icon-bar' }),
+	            _react2.default.createElement('span', { className: 'icon-bar' }),
+	            _react2.default.createElement('span', { className: 'icon-bar' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'navbar-brand', href: '#' },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              _react2.default.createElement('img', { src: 'https://openclipart.org/image/30px/svg_to_png/227918/Video-Game-Controller-Icon.png',
+	                width: '30', height: '30', className: 'd-inline-block align-top', alt: 'snes controller image' })
+	            ),
+	            '\xA0GameBin'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'nav navbar-nav' },
+	            _react2.default.createElement(
+	              'li',
+	              { className: select === "home" ? "active" : "" },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/' },
+	                'Home'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              { className: select === "collection" ? "active" : "" },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/collection' },
+	                'Game Collection'
+	              )
+	            )
 	          )
 	        )
 	      )
@@ -29500,7 +29548,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_header2.default, null),
+	        _react2.default.createElement(_header2.default, { select: 'home' }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
@@ -29555,7 +29603,7 @@
 /* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29566,6 +29614,10 @@
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(235);
+
+	var _actions = __webpack_require__(273);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29578,62 +29630,128 @@
 	var Form = function (_Component) {
 	  _inherits(Form, _Component);
 
-	  function Form() {
+	  function Form(props) {
 	    _classCallCheck(this, Form);
 
-	    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+	    _this.state = {
+	      title: '',
+	      description: '',
+	      img: '',
+	      limit: 200
+	    };
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Form, [{
-	    key: "render",
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      var newState = {};
+
+	      if (e.target.name === "description") {
+	        var field = 200 - e.target.value.length;
+	        newState['limit'] = field;
+	      }
+
+	      newState[e.target.name] = e.target.value;
+
+	      this.setState(newState);
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      var _this2 = this;
+
+	      e.preventDefault();
+
+	      var dispatch = this.props.dispatch;
+
+
+	      var newGame = {
+	        title: this.state.title,
+	        description: this.state.description,
+	        img: this.state.img
+	      };
+	      console.log(newGame);
+	      console.log("AM I RUNNING AT ALL ?!");
+
+	      if (newGame.title.length < 1 || newGame.description.length < 1 || newGame.img.length < 1) {
+	        return false;
+	      }
+
+	      console.log("I AM NOT RUNNING? ");
+	      // JSON.stringify(newGame);
+	      dispatch((0, _actions.addGame)(JSON.stringify(newGame))).then(function () {
+	        _this2.setState({
+	          title: '',
+	          description: '',
+	          img: '',
+	          limit: 200
+	        });
+	        dispatch((0, _actions.fetchGames)());
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "form",
+	        'form',
 	        null,
 	        _react2.default.createElement(
-	          "h2",
+	          'h2',
 	          null,
-	          "Enter a video game!"
+	          'Enter a video game!'
 	        ),
-	        _react2.default.createElement("br", null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "form-group row" },
+	          'div',
+	          { className: 'form-group row' },
 	          _react2.default.createElement(
-	            "label",
-	            { htmlFor: "gameInput" },
-	            "Name:"
+	            'label',
+	            { htmlFor: 'gameInput' },
+	            'Name:'
 	          ),
-	          _react2.default.createElement("input", { type: "game", className: "form-control", id: "gameInput", "aria-describedby": "gameName", placeholder: "Enter game" })
+	          _react2.default.createElement('input', { maxLength: 20, onChange: this.handleChange, value: this.state.title, type: 'game', className: 'form-control', name: 'title', id: 'gameInput', 'aria-describedby': 'gameName', placeholder: 'Enter game' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "form-group row" },
+	          'div',
+	          { className: 'form-group row' },
 	          _react2.default.createElement(
-	            "label",
-	            { htmlFor: "exampleTextarea" },
-	            "Description: "
+	            'label',
+	            { htmlFor: 'exampleTextarea' },
+	            'Description: '
 	          ),
-	          _react2.default.createElement("textarea", { className: "form-control", id: "exampleTextarea", rows: "3" }),
+	          _react2.default.createElement('textarea', { maxLength: 200, onChange: this.handleChange, value: this.state.description, className: 'form-control', name: 'description', placeholder: 'Enter a short game description.', id: 'exampleTextarea', rows: '3' }),
 	          _react2.default.createElement(
-	            "small",
-	            { id: "emailHelp", className: "form-text text-muted" },
-	            "Share a short description or experience. "
+	            'small',
+	            { id: 'gameDescription', className: 'form-text text-muted' },
+	            this.state.limit,
+	            ' characters '
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "form-group row" },
+	          'div',
+	          { className: 'form-group row' },
 	          _react2.default.createElement(
-	            "label",
-	            { htmlFor: "example-url-input", "class": "col-2 col-form-label" },
-	            "Image: "
+	            'label',
+	            { htmlFor: 'example-url-input', className: 'col-2 col-form-label' },
+	            'Image: '
 	          ),
 	          _react2.default.createElement(
-	            "div",
-	            { className: "col-10" },
-	            _react2.default.createElement("input", { className: "form-control", type: "url", value: "Enter image link.", id: "example-url-input" })
+	            'div',
+	            { className: 'col-10' },
+	            _react2.default.createElement('input', { onChange: this.handleChange, value: this.state.img, className: 'form-control', type: 'url', placeholder: 'Enter image link.', name: 'img', id: 'example-url-input' })
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit', onClick: this.handleSubmit, className: 'btn btn-primary' },
+	          'Add Game!'
 	        )
 	      );
 	    }
@@ -29642,7 +29760,11 @@
 	  return Form;
 	}(_react.Component);
 
-	exports.default = Form;
+	var mapStateToProps = function mapStateToProps(state) {
+	  return { state: state.games.games };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Form);
 
 /***/ },
 /* 276 */
@@ -29659,6 +29781,10 @@
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _header = __webpack_require__(272);
+
+	var _header2 = _interopRequireDefault(_header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29680,10 +29806,15 @@
 	  _createClass(Collection, [{
 	    key: 'render',
 	    value: function render() {
-	      _react2.default.createElement(
-	        'h1',
+	      return _react2.default.createElement(
+	        'div',
 	        null,
-	        'Hello collection world!!1'
+	        _react2.default.createElement(_header2.default, { select: 'collection' }),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Hello collection world!!1'
+	        )
 	      );
 	    }
 	  }]);
@@ -30950,7 +31081,7 @@
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  border-style: dotted;\n  padding: 40px; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  border-style: dotted;\n  padding: 40px; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
 
 	// exports
 

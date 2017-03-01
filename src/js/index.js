@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from './components/app';
+import Header from './components/header';
 import Home from './components/home';
 import Collection from './components/collection';
 import store from './store';
@@ -16,7 +17,6 @@ ReactDOM.render(
     <Router history={ browserHistory }>
       <Route path="/" component={Home}></Route>
       <Route path="/collection" component={Collection}></Route>
-      <IndexRoute component={Home}></IndexRoute>
     </Router>
   </Provider>,
   document.getElementById('app')

@@ -10,7 +10,6 @@ export class App extends Component {
     const { dispatch } = this.props;
     dispatch(fetchGames())
       .then(() => {
-        console.log(this.props.games[2]);
       });
   }
 
@@ -67,7 +66,7 @@ export class App extends Component {
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else. </small>
+              <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else. </small>
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Password</label>

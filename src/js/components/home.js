@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header select="home" />
         <div className="container">
           <br /><br /><br />
           <div className="col-md-6">

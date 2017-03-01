@@ -1,6 +1,66 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchGames, addGame, updateGame, deleteGame } from '../actions';
 
 class Form extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: '',
+      description: '',
+      img: '',
+      limit: 200
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e){
+    let newState = {};
+
+    if(e.target.name === "description") {
+      let field = 200 - e.target.value.length;
+      newState['limit'] = field;
+    }
+
+    newState[e.target.name] = e.target.value;
+
+    this.setState(newState);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+
+    let newGame = {
+      title: this.state.title,
+      description: this.state.description,
+      img: this.state.img
+    }
+    console.log(newGame);
+    console.log("AM I RUNNING AT ALL ?!");
+
+    if (newGame.title.length < 1 || newGame.description.length < 1 || newGame.img.length < 1) {
+      return false;
+    }
+
+    console.log("I AM NOT RUNNING? ");
+    // JSON.stringify(newGame);
+    dispatch(addGame(JSON.stringify(newGame)))
+      .then(() => {
+        this.setState({
+          title: '',
+          description: '',
+          img: '',
+          limit: 200
+        });
+        dispatch(fetchGames());
+      })
+      .catch((err) => { console.log(err) });
+  };
+
   render() {
     return (
       <form>
@@ -8,22 +68,27 @@ class Form extends Component {
         <br />
         <div className="form-group row">
           <label htmlFor="gameInput">Name:</label>
-          <input type="game" className="form-control" id="gameInput" aria-describedby="gameName" placeholder="Enter game" />
+          <input maxLength={20} onChange={this.handleChange} value={this.state.title} type="game" className="form-control" name='title' id="gameInput" aria-describedby="gameName" placeholder="Enter game" />
         </div>
         <div className="form-group row">
           <label htmlFor="exampleTextarea">Description: </label>
-          <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
-          <small id="emailHelp" className="form-text text-muted">Share a short description or experience. </small>
+          <textarea maxLength={200} onChange={this.handleChange} value={this.state.description} className="form-control" name='description' placeholder="Enter a short game description." id="exampleTextarea" rows="3"></textarea>
+          <small id="gameDescription" className="form-text text-muted">{this.state.limit} characters </small>
         </div>
         <div className="form-group row">
-          <label htmlFor="example-url-input" class="col-2 col-form-label">Image: </label>
+          <label htmlFor="example-url-input" className="col-2 col-form-label">Image: </label>
           <div className="col-10">
-            <input className="form-control" type="url" value="Enter image link." id="example-url-input"/>
+            <input onChange={this.handleChange} value={this.state.img} className="form-control" type="url" placeholder="Enter image link." name='img' id="example-url-input"/>
           </div>
         </div>
+        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Add Game!</button>
       </form>
     )
   }
 }
 
-export default Form;
+const mapStateToProps = state => {
+  return { state: state.games.games }
+}
+
+export default connect(mapStateToProps)(Form);
