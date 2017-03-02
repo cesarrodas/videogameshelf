@@ -75,6 +75,10 @@ class Form extends Component {
           <textarea maxLength={200} onChange={this.handleChange} value={this.state.description} className="form-control" name='description' placeholder="Enter a short game description." id="exampleTextarea" rows="3"></textarea>
           <small id="gameDescription" className="form-text text-muted">{this.state.limit} characters </small>
         </div>
+        { this.state.img ?
+          <p className="pic"><img src={this.state.img} onError={(e) => e.currentTarget.style.display = "none"} height="200" maxWidth="300" /></p> :
+          null
+        }
         <div className="form-group row">
           <label htmlFor="example-url-input" className="col-2 col-form-label">Image: </label>
           <div className="col-10">

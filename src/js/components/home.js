@@ -15,13 +15,17 @@ class Home extends Component {
               <br/>
               <p>This website allows you to keep your present
                 or future video game collection in one place. </p>
-              <p>Plan ahead with a list of wishes or keep your highly
-              regarded gem at the top with great descriptions that
-              entice people on the fence.</p>
+              <p>Plan ahead with a list that showcases what you want to play or
+              build a large collection that displays your gaming prowess.</p>
+              <br />
+              <p className="pic"><img src="http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png"
+                alt="donkey kong character picture." height="240"/></p>
             </div>
           </div>
           <div className="col-md-6">
-            <Form />
+            <div className="col-md-10 col-md-offset-1">
+              <Form />
+            </div>
           </div>
         </div>
       </div>

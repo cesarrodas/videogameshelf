@@ -72,17 +72,17 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _collection = __webpack_require__(276);
+	var _collection = __webpack_require__(277);
 
 	var _collection2 = _interopRequireDefault(_collection);
 
-	var _store = __webpack_require__(277);
+	var _store = __webpack_require__(278);
 
 	var _store2 = _interopRequireDefault(_store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(289);
+	__webpack_require__(290);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -29525,6 +29525,10 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
+	var _game = __webpack_require__(276);
+
+	var _game2 = _interopRequireDefault(_game);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29580,14 +29584,26 @@
 	              _react2.default.createElement(
 	                'p',
 	                null,
-	                'Plan ahead with a list of wishes or keep your highly regarded gem at the top with great descriptions that entice people on the fence.'
-	              )
+	                'Plan ahead with a list that showcases what you want to play or build a large collection that displays your gaming prowess.'
+	              ),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'pic' },
+	                _react2.default.createElement('img', { src: 'http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png',
+	                  alt: 'donkey kong character picture.', height: '240' })
+	              ),
+	              _react2.default.createElement(_game2.default, null)
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-md-6' },
-	            _react2.default.createElement(_form2.default, null)
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-10 col-md-offset-1' },
+	              _react2.default.createElement(_form2.default, null)
+	            )
 	          )
 	        )
 	      );
@@ -29734,6 +29750,13 @@
 	            ' characters '
 	          )
 	        ),
+	        this.state.img ? _react2.default.createElement(
+	          'p',
+	          { className: 'pic' },
+	          _react2.default.createElement('img', { src: this.state.img, onError: function onError(e) {
+	              return e.currentTarget.style.display = "none";
+	            }, height: '200', maxWidth: '300' })
+	        ) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'form-group row' },
@@ -29770,6 +29793,45 @@
 /* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Game = function Game(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "panel panel-game" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "panel-heading" },
+	      _react2.default.createElement(
+	        "h3",
+	        { className: "panel-title" },
+	        "Panel title"
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "panel-body" },
+	      "Panel content"
+	    )
+	  );
+	};
+
+	exports.default = Game;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -29797,10 +29859,10 @@
 	var Collection = function (_Component) {
 	  _inherits(Collection, _Component);
 
-	  function Collection() {
+	  function Collection(props) {
 	    _classCallCheck(this, Collection);
 
-	    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, props));
 	  }
 
 	  _createClass(Collection, [{
@@ -29810,11 +29872,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_header2.default, { select: 'collection' }),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Hello collection world!!1'
-	        )
+	        _react2.default.createElement('div', { className: 'container' })
 	      );
 	    }
 	  }]);
@@ -29823,40 +29881,6 @@
 	}(_react.Component);
 
 	exports.default = Collection;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _redux = __webpack_require__(244);
-
-	var _reduxLogger = __webpack_require__(278);
-
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-
-	var _reduxThunk = __webpack_require__(284);
-
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-	var _reduxPromiseMiddleware = __webpack_require__(285);
-
-	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
-
-	var _reducers = __webpack_require__(287);
-
-	var _reducers2 = _interopRequireDefault(_reducers);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
-
-	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
 
 /***/ },
 /* 278 */
@@ -29868,13 +29892,47 @@
 	  value: true
 	});
 
+	var _redux = __webpack_require__(244);
+
+	var _reduxLogger = __webpack_require__(279);
+
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+	var _reduxThunk = __webpack_require__(285);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+	var _reduxPromiseMiddleware = __webpack_require__(286);
+
+	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
+
+	var _reducers = __webpack_require__(288);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger2.default)());
+
+	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _core = __webpack_require__(279);
+	var _core = __webpack_require__(280);
 
-	var _helpers = __webpack_require__(280);
+	var _helpers = __webpack_require__(281);
 
-	var _defaults = __webpack_require__(283);
+	var _defaults = __webpack_require__(284);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -29977,7 +30035,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29990,9 +30048,9 @@
 
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(280);
+	var _helpers = __webpack_require__(281);
 
-	var _diff = __webpack_require__(281);
+	var _diff = __webpack_require__(282);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -30119,7 +30177,7 @@
 	}
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -30143,7 +30201,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30153,7 +30211,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(282);
+	var _deepDiff = __webpack_require__(283);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -30242,7 +30300,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -30671,7 +30729,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -30722,7 +30780,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30750,7 +30808,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30767,7 +30825,7 @@
 
 	exports.default = promiseMiddleware;
 
-	var _isPromise = __webpack_require__(286);
+	var _isPromise = __webpack_require__(287);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -30924,7 +30982,7 @@
 	}
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30945,7 +31003,7 @@
 	}
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30956,7 +31014,7 @@
 
 	var _redux = __webpack_require__(244);
 
-	var _gamesReducer = __webpack_require__(288);
+	var _gamesReducer = __webpack_require__(289);
 
 	var _gamesReducer2 = _interopRequireDefault(_gamesReducer);
 
@@ -30967,7 +31025,7 @@
 	});
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31047,16 +31105,16 @@
 	}
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(290);
+	var content = __webpack_require__(291);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(292)(content, {});
+	var update = __webpack_require__(293)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -31073,21 +31131,21 @@
 	}
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(291)();
+	exports = module.exports = __webpack_require__(292)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  border-style: dotted;\n  padding: 40px; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.pic {\n  text-align: center; }\n\n.panel-game {\n  border-color: #ff0000; }\n\n.panel-game > .panel-heading {\n  background: #ff0000;\n  color: #ffffff;\n  border-color: #ff0000; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports) {
 
 	/*
@@ -31143,7 +31201,7 @@
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
