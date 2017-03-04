@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchGames, addGame, updateGame, deleteGame } from '../actions';
 
@@ -46,8 +47,6 @@ class Form extends Component {
       return false;
     }
 
-    console.log("I AM NOT RUNNING? ");
-    // JSON.stringify(newGame);
     dispatch(addGame(JSON.stringify(newGame)))
       .then(() => {
         this.setState({
@@ -68,11 +67,11 @@ class Form extends Component {
         <br />
         <div className="form-group row">
           <label htmlFor="gameInput">Name:</label>
-          <input maxLength={20} onChange={this.handleChange} value={this.state.title} type="game" className="form-control" name='title' id="gameInput" aria-describedby="gameName" placeholder="Enter game" />
+          <input maxLength={20} onChange={this.handleChange} value={this.state.title} type="game" className="form-control" name='title' id="gameInput" required aria-describedby="gameName" placeholder="Enter game" />
         </div>
         <div className="form-group row">
           <label htmlFor="exampleTextarea">Description: </label>
-          <textarea maxLength={200} onChange={this.handleChange} value={this.state.description} className="form-control" name='description' placeholder="Enter a short game description." id="exampleTextarea" rows="3"></textarea>
+          <textarea maxLength={200} onChange={this.handleChange} value={this.state.description} className="form-control" name="description" required placeholder="Enter a short game description." id="exampleTextarea" rows="3"></textarea>
           <small id="gameDescription" className="form-text text-muted">{this.state.limit} characters </small>
         </div>
         { this.state.img ?
@@ -82,7 +81,7 @@ class Form extends Component {
         <div className="form-group row">
           <label htmlFor="example-url-input" className="col-2 col-form-label">Image: </label>
           <div className="col-10">
-            <input onChange={this.handleChange} value={this.state.img} className="form-control" type="url" placeholder="Enter image link." name='img' id="example-url-input"/>
+            <input onChange={this.handleChange} value={this.state.img} className="form-control" type="url" placeholder="Enter image link." required name='img' id="example-url-input"/>
           </div>
         </div>
         <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Add Game!</button>

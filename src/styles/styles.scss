@@ -17,17 +17,28 @@ $blue: #2f5575;
   padding: 25px;
 }
 
+.games-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.game-container {
+  width: 30%;
+  padding: 1.5%
+}
+
 .pic {
   text-align: center;
 }
 
 .panel-game {
-    border-color: #ff0000;
+    border-color: #DE5A3F;
 }
 .panel-game > .panel-heading {
-    background: #ff0000;
+    background: #DE5A3F;
     color: #ffffff;
-    border-color: #ff0000;
+    border-color: #DE5A3F;
 }
 
 textarea {

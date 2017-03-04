@@ -72,7 +72,7 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _collection = __webpack_require__(277);
+	var _collection = __webpack_require__(276);
 
 	var _collection2 = _interopRequireDefault(_collection);
 
@@ -29525,10 +29525,6 @@
 
 	var _form2 = _interopRequireDefault(_form);
 
-	var _game = __webpack_require__(276);
-
-	var _game2 = _interopRequireDefault(_game);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29592,8 +29588,7 @@
 	                { className: 'pic' },
 	                _react2.default.createElement('img', { src: 'http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png',
 	                  alt: 'donkey kong character picture.', height: '240' })
-	              ),
-	              _react2.default.createElement(_game2.default, null)
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -29732,7 +29727,7 @@
 	            { htmlFor: 'gameInput' },
 	            'Name:'
 	          ),
-	          _react2.default.createElement('input', { maxLength: 20, onChange: this.handleChange, value: this.state.title, type: 'game', className: 'form-control', name: 'title', id: 'gameInput', 'aria-describedby': 'gameName', placeholder: 'Enter game' })
+	          _react2.default.createElement('input', { maxLength: 20, onChange: this.handleChange, value: this.state.title, type: 'game', className: 'form-control', name: 'title', id: 'gameInput', required: true, 'aria-describedby': 'gameName', placeholder: 'Enter game' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -29742,7 +29737,7 @@
 	            { htmlFor: 'exampleTextarea' },
 	            'Description: '
 	          ),
-	          _react2.default.createElement('textarea', { maxLength: 200, onChange: this.handleChange, value: this.state.description, className: 'form-control', name: 'description', placeholder: 'Enter a short game description.', id: 'exampleTextarea', rows: '3' }),
+	          _react2.default.createElement('textarea', { maxLength: 200, onChange: this.handleChange, value: this.state.description, className: 'form-control', name: 'description', required: true, placeholder: 'Enter a short game description.', id: 'exampleTextarea', rows: '3' }),
 	          _react2.default.createElement(
 	            'small',
 	            { id: 'gameDescription', className: 'form-text text-muted' },
@@ -29768,7 +29763,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-10' },
-	            _react2.default.createElement('input', { onChange: this.handleChange, value: this.state.img, className: 'form-control', type: 'url', placeholder: 'Enter image link.', name: 'img', id: 'example-url-input' })
+	            _react2.default.createElement('input', { onChange: this.handleChange, value: this.state.img, className: 'form-control', type: 'url', placeholder: 'Enter image link.', required: true, name: 'img', id: 'example-url-input' })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -29793,45 +29788,6 @@
 /* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Game = function Game(props) {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "panel panel-game" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "panel-heading" },
-	      _react2.default.createElement(
-	        "h3",
-	        { className: "panel-title" },
-	        "Panel title"
-	      )
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "panel-body" },
-	      "Panel content"
-	    )
-	  );
-	};
-
-	exports.default = Game;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -29848,6 +29804,14 @@
 
 	var _header2 = _interopRequireDefault(_header);
 
+	var _game = __webpack_require__(277);
+
+	var _game2 = _interopRequireDefault(_game);
+
+	var _reactRedux = __webpack_require__(235);
+
+	var _actions = __webpack_require__(273);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29862,17 +29826,59 @@
 	  function Collection(props) {
 	    _classCallCheck(this, Collection);
 
-	    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, props));
+
+	    _this.state = {
+	      games: []
+	    };
+	    _this.loadGames = _this.loadGames.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Collection, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var dispatch = this.props.dispatch;
+
+	      dispatch((0, _actions.fetchGames)()).then(function (collection) {
+	        _this2.setState({
+	          games: collection.value
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'loadGames',
+	    value: function loadGames(games) {
+	      if (games) {
+	        return games.map(function (game) {
+	          return _react2.default.createElement(_game2.default, { key: game._id,
+	            title: game.title, summary: game.description, image: game.img });
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(_header2.default, { select: 'collection' }),
-	        _react2.default.createElement('div', { className: 'container' })
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'GAMES!'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'games-container' },
+	            this.loadGames(this.state.games)
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -29880,7 +29886,61 @@
 	  return Collection;
 	}(_react.Component);
 
-	exports.default = Collection;
+	//{JSON.stringify(this.state.games)}
+
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return { state: state.games.games };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Collection);
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Game = function Game(_ref) {
+	  var title = _ref.title,
+	      summary = _ref.summary,
+	      image = _ref.image;
+
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "game-container" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "panel panel-game" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "panel-heading" },
+	        _react2.default.createElement(
+	          "h3",
+	          { className: "panel-title" },
+	          title
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "panel-body" },
+	        summary
+	      )
+	    )
+	  );
+	};
+
+	exports.default = Game;
 
 /***/ },
 /* 278 */
@@ -31139,7 +31199,7 @@
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.pic {\n  text-align: center; }\n\n.panel-game {\n  border-color: #ff0000; }\n\n.panel-game > .panel-heading {\n  background: #ff0000;\n  color: #ffffff;\n  border-color: #ff0000; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.games-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.game-container {\n  width: 30%;\n  padding: 1.5%; }\n\n.pic {\n  text-align: center; }\n\n.panel-game {\n  border-color: #DE5A3F; }\n\n.panel-game > .panel-heading {\n  background: #DE5A3F;\n  color: #ffffff;\n  border-color: #DE5A3F; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
 
 	// exports
 
