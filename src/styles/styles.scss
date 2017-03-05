@@ -17,6 +17,15 @@ $blue: #2f5575;
   padding: 25px;
 }
 
+.error {
+  color: #ff0033;
+}
+
+.formPicture {
+  height: 200px;
+  max-width: 300px;
+}
+
 .games-container {
   display: flex;
   flex-direction: row;
@@ -28,7 +37,7 @@ $blue: #2f5575;
   padding: 1.5%
 }
 
-.pic {
+.picture {
   text-align: center;
 }
 
