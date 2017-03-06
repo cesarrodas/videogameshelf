@@ -18,13 +18,13 @@ class Home extends Component {
               <p>Plan ahead with a list that showcases what you want to play or
               build a large collection that displays your gaming prowess.</p>
               <br />
-              <p className="pic"><img src="http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png"
+              <p className="picture"><img src="http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png"
                 alt="donkey kong character picture." height="240"/></p>
             </div>
           </div>
           <div className="col-md-6">
             <div className="col-md-10 col-md-offset-1">
-              <Form />
+              <Form formInfo={this.props.location} />
             </div>
           </div>
         </div>

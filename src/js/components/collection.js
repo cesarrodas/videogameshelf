@@ -26,7 +26,7 @@ class Collection extends Component {
 
   loadGames(games) {
     if(games) {
-      return games.map((game) => <Game key={game._id}
+      return games.map((game) => <Game key={game._id} id={game._id}
         title={game.title} summary={game.description} image={game.img} />)
     }
   }

@@ -193,7 +193,10 @@
 	      headers.forEach(function(value, name) {
 	        this.append(name, value)
 	      }, this)
-
+	    } else if (Array.isArray(headers)) {
+	      headers.forEach(function(header) {
+	        this.append(header[0], header[1])
+	      }, this)
 	    } else if (headers) {
 	      Object.getOwnPropertyNames(headers).forEach(function(name) {
 	        this.append(name, headers[name])
@@ -29585,7 +29588,7 @@
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'p',
-	                { className: 'pic' },
+	                { className: 'picture' },
 	                _react2.default.createElement('img', { src: 'http://www.dkvine.com/games/dkc/characters/images/donkey_kong_07.png',
 	                  alt: 'donkey kong character picture.', height: '240' })
 	              )
@@ -29597,7 +29600,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'col-md-10 col-md-offset-1' },
-	              _react2.default.createElement(_form2.default, null)
+	              _react2.default.createElement(_form2.default, { formInfo: this.props.location })
 	            )
 	          )
 	        )
@@ -29668,14 +29671,16 @@
 	    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
 	    _this.state = {
-	      title: '',
-	      description: '',
-	      img: '',
+	      title: _this.props.formInfo ? _this.props.formInfo.query.title : '',
+	      description: _this.props.formInfo ? _this.props.formInfo.query.description : '',
+	      img: _this.props.formInfo ? _this.props.formInfo.query.img : '',
+	      key: _this.props.formInfo ? _this.props.formInfo.query.id : '',
 	      limit: 200,
 	      erros: {}
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.reset = _this.reset.bind(_this);
 	    return _this;
 	  }
 
@@ -29704,6 +29709,17 @@
 	      this.setState(newState);
 	    }
 	  }, {
+	    key: 'reset',
+	    value: function reset() {
+	      this.setState({
+	        title: '',
+	        description: '',
+	        img: '',
+	        key: '',
+	        limit: 200
+	      });
+	    }
+	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      var _this2 = this;
@@ -29727,17 +29743,27 @@
 	        img: this.state.img
 	      };
 
-	      dispatch((0, _actions.addGame)(JSON.stringify(newGame))).then(function () {
-	        _this2.setState({
-	          title: '',
-	          description: '',
-	          img: '',
-	          limit: 200
+	      if (this.state.key) {
+	        dispatch((0, _actions.updateGame)(this.state.key, JSON.stringify(newGame))).then(function () {
+	          _this2.reset();
+	          dispatch((0, _actions.fetchGames)());
+	        }).catch(function (err) {
+	          console.log(err);
 	        });
-	        dispatch((0, _actions.fetchGames)());
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	      } else {
+	        dispatch((0, _actions.addGame)(JSON.stringify(newGame))).then(function () {
+	          _this2.setState({
+	            title: '',
+	            description: '',
+	            img: '',
+	            key: '',
+	            limit: 200
+	          });
+	          dispatch((0, _actions.fetchGames)());
+	        }).catch(function (err) {
+	          console.log(err);
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -29748,7 +29774,7 @@
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          'Enter a video game!'
+	          this.state.key ? "Practice makes perfect!" : "Enter a game!"
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
@@ -29759,6 +29785,7 @@
 	            { htmlFor: 'gameInput' },
 	            'Name:'
 	          ),
+	          JSON.stringify(this.props.location),
 	          _react2.default.createElement('input', { maxLength: 20, onChange: this.handleChange, value: this.state.title, type: 'game', className: 'form-control', name: 'title', id: 'gameInput', required: true, 'aria-describedby': 'gameName', placeholder: 'Enter game' }),
 	          this.state.errors ? _react2.default.createElement(
 	            'small',
@@ -29817,7 +29844,7 @@
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'submit', onClick: this.handleSubmit, className: 'btn btn-primary' },
-	          'Add Game!'
+	          this.state.key ? "Update Game!" : "Add Game!"
 	        )
 	      );
 	    }
@@ -39811,7 +39838,7 @@
 	    value: function loadGames(games) {
 	      if (games) {
 	        return games.map(function (game) {
-	          return _react2.default.createElement(_game2.default, { key: game._id,
+	          return _react2.default.createElement(_game2.default, { key: game._id, id: game._id,
 	            title: game.title, summary: game.description, image: game.img });
 	        });
 	      }
@@ -39857,7 +39884,7 @@
 /* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -39867,32 +39894,55 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(34);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Game = function Game(_ref) {
 	  var title = _ref.title,
 	      summary = _ref.summary,
-	      image = _ref.image;
+	      image = _ref.image,
+	      id = _ref.id;
 
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "game-container" },
+	    'div',
+	    { className: 'game-container' },
 	    _react2.default.createElement(
-	      "div",
-	      { className: "panel panel-game" },
+	      'div',
+	      { className: 'panel panel-game' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "panel-heading" },
+	        'div',
+	        { className: 'panel-heading' },
 	        _react2.default.createElement(
-	          "h3",
-	          { className: "panel-title" },
+	          'h3',
+	          { className: 'panel-title' },
 	          title
 	        )
 	      ),
 	      _react2.default.createElement(
-	        "div",
-	        { className: "panel-body" },
-	        summary
+	        'div',
+	        { className: 'panel-body' },
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'picture' },
+	          _react2.default.createElement('img', { className: 'gameImage', src: image })
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          summary
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: { pathname: '/', query: {
+	                id: id,
+	                title: title,
+	                description: summary,
+	                img: image
+	              }
+	            } },
+	          'Edit'
+	        )
 	      )
 	    )
 	  );
@@ -40002,6 +40052,20 @@
 
 	  if (transformer) {
 	    console.error('Option \'transformer\' is deprecated, use \'stateTransformer\' instead!'); // eslint-disable-line no-console
+	  }
+
+	  // Detect if 'createLogger' was passed directly to 'applyMiddleware'.
+	  if (options.getState && options.dispatch) {
+	    // eslint-disable-next-line no-console
+	    console.error('redux-logger not installed. Make sure to pass logger instance as middleware:\n\nimport createLogger from \'redux-logger\';\n\nconst logger = createLogger();\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n);');
+
+	    return function () {
+	      return function (next) {
+	        return function (action) {
+	          return next(action);
+	        };
+	      };
+	    };
 	  }
 
 	  var logBuffer = [];
@@ -41159,7 +41223,7 @@
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.error {\n  color: #ff0033; }\n\n.formPicture {\n  height: 200px;\n  max-width: 300px; }\n\n.games-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.game-container {\n  width: 30%;\n  padding: 1.5%; }\n\n.picture {\n  text-align: center; }\n\n.panel-game {\n  border-color: #DE5A3F; }\n\n.panel-game > .panel-heading {\n  background: #DE5A3F;\n  color: #ffffff;\n  border-color: #DE5A3F; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.error {\n  color: #ff0033; }\n\n.formPicture {\n  height: 200px;\n  max-width: 300px; }\n\n.games-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.game-container {\n  width: 30%;\n  padding: 1.5%; }\n\n.gameImage {\n  border: 2px solid #696969;\n  border-radius: 2px;\n  height: 160px;\n  max-width: 240px; }\n\n.picture {\n  text-align: center; }\n\n.panel-game {\n  border-color: #DE5A3F; }\n\n.panel-game > .panel-heading {\n  background: #DE5A3F;\n  color: #ffffff;\n  border-color: #DE5A3F; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
 
 	// exports
 

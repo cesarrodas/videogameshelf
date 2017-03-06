@@ -27,14 +27,16 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      title: '',
-      description: '',
-      img: '',
+      title: this.props.formInfo ? this.props.formInfo.query.title : '',
+      description: this.props.formInfo ? this.props.formInfo.query.description : '',
+      img: this.props.formInfo ? this.props.formInfo.query.img : '',
+      key: this.props.formInfo ? this.props.formInfo.query.id : '',
       limit: 200,
-      erros: {}
+      errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleChange(e){
@@ -60,6 +62,16 @@ class Form extends Component {
     this.setState(newState);
   }
 
+  reset() {
+    this.setState({
+      title: '',
+      description: '',
+      img: '',
+      key: '',
+      limit: 200
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -79,26 +91,31 @@ class Form extends Component {
       img: this.state.img
     }
 
-    dispatch(addGame(JSON.stringify(newGame)))
-      .then(() => {
-        this.setState({
-          title: '',
-          description: '',
-          img: '',
-          limit: 200
-        });
-        dispatch(fetchGames());
-      })
-      .catch((err) => { console.log(err) });
+    if(this.state.key){
+      dispatch(updateGame(this.state.key, JSON.stringify(newGame)))
+        .then(() => {
+          this.reset();
+          dispatch(fetchGames());
+        })
+        .catch((err) => { console.log(err) });
+    } else {
+      dispatch(addGame(JSON.stringify(newGame)))
+        .then(() => {
+          this.reset()
+          dispatch(fetchGames());
+        })
+        .catch((err) => { console.log(err) });
+    }
   };
 
   render() {
     return (
       <form>
-        <h2>Enter a video game!</h2>
+        <h2>{ this.state.key ? "Practice makes perfect!" : "Enter a game!"}</h2>
         <br />
         <div className="form-group row">
           <label htmlFor="gameInput">Name:</label>
+          {JSON.stringify(this.props.location)}
           <input maxLength={20} onChange={this.handleChange} value={this.state.title} type="game" className="form-control" name='title' id="gameInput" required aria-describedby="gameName" placeholder="Enter game" />
           { this.state.errors ? <small className="form-text text-muted error">{this.state.errors.title}</small> : null}
         </div>
@@ -119,7 +136,7 @@ class Form extends Component {
             { this.state.errors ? <small className="form-text text-muted error">{this.state.errors.img}</small> : null}
           </div>
         </div>
-        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Add Game!</button>
+        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">{ this.state.key ? "Update Game!" : "Add Game!"}</button>
       </form>
     )
   }
