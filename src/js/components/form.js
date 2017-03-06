@@ -27,10 +27,10 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      title: this.props.formInfo ? this.props.formInfo.query.title : '',
-      description: this.props.formInfo ? this.props.formInfo.query.description : '',
-      img: this.props.formInfo ? this.props.formInfo.query.img : '',
-      key: this.props.formInfo ? this.props.formInfo.query.id : '',
+      title: this.props.formInfo.query.title ? this.props.formInfo.query.title : '',
+      description: this.props.formInfo.query.description ? this.props.formInfo.query.description : '',
+      img: this.props.formInfo.query.img ? this.props.formInfo.query.img : '',
+      key: this.props.formInfo.query.id ? this.props.formInfo.query.id : '',
       limit: 200,
       errors: {}
     };
@@ -47,10 +47,10 @@ class Form extends Component {
       newState['limit'] = field;
     }
 
-    if(this.state.errors){
+    if(Object.keys(this.state.errors).length > 0){
       var errors = validate(this.state.title, this.state.description, this.state.img);
 
-      if(errors){
+      if(Object.keys(errors).length > 0){
         this.setState({
           errors: errors
         });
@@ -68,7 +68,8 @@ class Form extends Component {
       description: '',
       img: '',
       key: '',
-      limit: 200
+      limit: 200,
+      errors: {}
     });
   }
 
@@ -83,6 +84,7 @@ class Form extends Component {
       this.setState({
         errors: errors
       });
+      return false;
     }
 
     let newGame = {

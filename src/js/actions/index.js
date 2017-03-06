@@ -32,6 +32,7 @@ export const updateGame = (id ,updatedGame) => ({
 export const deleteGame = (id) => ({
   type: DELETE_GAME,
   payload: fetch(`http://localhost:3000/games/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: new Headers({'content-type': 'application/json'})
   })
-})
+});

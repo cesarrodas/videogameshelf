@@ -193,10 +193,7 @@
 	      headers.forEach(function(value, name) {
 	        this.append(name, value)
 	      }, this)
-	    } else if (Array.isArray(headers)) {
-	      headers.forEach(function(header) {
-	        this.append(header[0], header[1])
-	      }, this)
+
 	    } else if (headers) {
 	      Object.getOwnPropertyNames(headers).forEach(function(name) {
 	        this.append(name, headers[name])
@@ -29499,7 +29496,8 @@
 	  return {
 	    type: DELETE_GAME,
 	    payload: fetch('http://localhost:3000/games/' + id, {
-	      method: 'DELETE'
+	      method: 'DELETE',
+	      headers: new Headers({ 'content-type': 'application/json' })
 	    })
 	  };
 	};
@@ -29671,12 +29669,12 @@
 	    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
 	    _this.state = {
-	      title: _this.props.formInfo ? _this.props.formInfo.query.title : '',
-	      description: _this.props.formInfo ? _this.props.formInfo.query.description : '',
-	      img: _this.props.formInfo ? _this.props.formInfo.query.img : '',
-	      key: _this.props.formInfo ? _this.props.formInfo.query.id : '',
+	      title: _this.props.formInfo.query.title ? _this.props.formInfo.query.title : '',
+	      description: _this.props.formInfo.query.description ? _this.props.formInfo.query.description : '',
+	      img: _this.props.formInfo.query.img ? _this.props.formInfo.query.img : '',
+	      key: _this.props.formInfo.query.id ? _this.props.formInfo.query.id : '',
 	      limit: 200,
-	      erros: {}
+	      errors: {}
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -29694,10 +29692,10 @@
 	        newState['limit'] = field;
 	      }
 
-	      if (this.state.errors) {
+	      if (Object.keys(this.state.errors).length > 0) {
 	        var errors = validate(this.state.title, this.state.description, this.state.img);
 
-	        if (errors) {
+	        if (Object.keys(errors).length > 0) {
 	          this.setState({
 	            errors: errors
 	          });
@@ -29716,7 +29714,8 @@
 	        description: '',
 	        img: '',
 	        key: '',
-	        limit: 200
+	        limit: 200,
+	        errors: {}
 	      });
 	    }
 	  }, {
@@ -29735,6 +29734,7 @@
 	        this.setState({
 	          errors: errors
 	        });
+	        return false;
 	      }
 
 	      var newGame = {
@@ -29752,13 +29752,7 @@
 	        });
 	      } else {
 	        dispatch((0, _actions.addGame)(JSON.stringify(newGame))).then(function () {
-	          _this2.setState({
-	            title: '',
-	            description: '',
-	            img: '',
-	            key: '',
-	            limit: 200
-	          });
+	          _this2.reset();
 	          dispatch((0, _actions.fetchGames)());
 	        }).catch(function (err) {
 	          console.log(err);
@@ -39834,13 +39828,24 @@
 	      });
 	    }
 	  }, {
+	    key: 'deleteThisGame',
+	    value: function deleteThisGame(id) {
+	      var dispatch = this.props.dispatch;
+
+	      dispatch((0, _actions.deleteGame)(id)).then(function () {
+	        dispatch((0, _actions.fetchGames)());
+	      });
+	    }
+	  }, {
 	    key: 'loadGames',
 	    value: function loadGames(games) {
+	      var _this3 = this;
+
 	      if (games) {
 	        return games.map(function (game) {
-	          return _react2.default.createElement(_game2.default, { key: game._id, id: game._id,
+	          return _react2.default.createElement(_game2.default, { key: game._id, del: _this3.deleteThisGame, id: game._id,
 	            title: game.title, summary: game.description, image: game.img });
-	        });
+	        }, this);
 	      }
 	    }
 	  }, {
@@ -39902,7 +39907,8 @@
 	  var title = _ref.title,
 	      summary = _ref.summary,
 	      image = _ref.image,
-	      id = _ref.id;
+	      id = _ref.id,
+	      del = _ref.del;
 
 	  return _react2.default.createElement(
 	    'div',
@@ -39933,6 +39939,11 @@
 	          summary
 	        ),
 	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          id
+	        ),
+	        _react2.default.createElement(
 	          _reactRouter.Link,
 	          { to: { pathname: '/', query: {
 	                id: id,
@@ -39942,6 +39953,11 @@
 	              }
 	            } },
 	          'Edit'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: del(String(id)) },
+	          'Delete'
 	        )
 	      )
 	    )
@@ -40052,20 +40068,6 @@
 
 	  if (transformer) {
 	    console.error('Option \'transformer\' is deprecated, use \'stateTransformer\' instead!'); // eslint-disable-line no-console
-	  }
-
-	  // Detect if 'createLogger' was passed directly to 'applyMiddleware'.
-	  if (options.getState && options.dispatch) {
-	    // eslint-disable-next-line no-console
-	    console.error('redux-logger not installed. Make sure to pass logger instance as middleware:\n\nimport createLogger from \'redux-logger\';\n\nconst logger = createLogger();\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n);');
-
-	    return function () {
-	      return function (next) {
-	        return function (action) {
-	          return next(action);
-	        };
-	      };
-	    };
 	  }
 
 	  var logBuffer = [];

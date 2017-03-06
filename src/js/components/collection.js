@@ -24,10 +24,18 @@ class Collection extends Component {
       });
   }
 
+  deleteThisGame(id) {
+    const { dispatch } = this.props;
+    dispatch(deleteGame(id))
+      .then(() => {
+        dispatch(fetchGames());
+      });
+  }
+
   loadGames(games) {
     if(games) {
-      return games.map((game) => <Game key={game._id} id={game._id}
-        title={game.title} summary={game.description} image={game.img} />)
+      return games.map((game) => <Game key={game._id} del={this.deleteThisGame} id={game._id}
+        title={game.title} summary={game.description} image={game.img} />, this);
     }
   }
 

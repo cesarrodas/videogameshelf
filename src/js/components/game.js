@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-const Game = ({title, summary, image, id}) => {
+const Game = ({title, summary, image, id, del}) => {
   return (
     <div className="game-container">
       <div className="panel panel-game">
@@ -11,6 +11,7 @@ const Game = ({title, summary, image, id}) => {
         <div className="panel-body">
           <p className="picture"><img className="gameImage" src={image} /></p>
           <p>{summary}</p>
+          <h1>{id}</h1>
           <Link to={ {pathname: '/', query:
             {
               id: id,
@@ -19,6 +20,7 @@ const Game = ({title, summary, image, id}) => {
               img: image
             }
             }} >Edit</Link>
+            <button onClick={del(String(id))}>Delete</button>
         </div>
       </div>
     </div>
