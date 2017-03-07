@@ -123,8 +123,8 @@ class Form extends Component {
         <div className="form-group row">
           <label htmlFor="exampleTextarea">Description: </label>
           <textarea maxLength={200} onChange={this.handleChange} value={this.state.description} className="form-control" name="description" required placeholder="Enter a short game description." id="exampleTextarea" rows="3"></textarea>
-          { this.state.errors ? <small className="form-text text-muted error">{this.state.errors.description}<br/></small> : null}
           <small id="gameDescription" className="form-text text-muted">{this.state.limit} characters </small>
+          { this.state.errors ? <small className="form-text text-muted error">{this.state.errors.description}<br/></small> : null}
         </div>
         { this.state.img ?
           <p className="picture"><img className="formPicture" src={this.state.img} onError={(e) => e.currentTarget.style.display = "none"} /></p> :

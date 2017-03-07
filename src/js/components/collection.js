@@ -47,16 +47,20 @@ class Collection extends Component {
 
   render(games) {
     const loadGames = (games) => {
-      return games.map((game) => <Game key={game._id} changeID={this.setGameID.bind(this)}
-        del={this.deleteThisGame.bind(this)} id={game._id}
-        title={game.title} summary={game.description} image={game.img} />);
+      if(games.length >= 1){
+        return games.map((game) => <Game key={game._id} changeID={this.setGameID.bind(this)}
+          del={this.deleteThisGame.bind(this)} id={game._id}
+          title={game.title} summary={game.description} image={game.img} />);
+      } else {
+        return <h2 className="centered centeredTitle">Add Items to the game cabinet!</h2>;
+      }
     }
 
     return (
       <div>
         <Header select="collection" />
         <div className="container">
-        <h1>GAMES!</h1>
+        <h1 className="centeredTitle">Collection Corner</h1>
           <div className="games-container">
             {loadGames(this.state.games)}
             <Modal del={this.deleteThisGame.bind(this)} id={this.state.delete} />

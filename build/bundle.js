@@ -29794,18 +29794,18 @@
 	            'Description: '
 	          ),
 	          _react2.default.createElement('textarea', { maxLength: 200, onChange: this.handleChange, value: this.state.description, className: 'form-control', name: 'description', required: true, placeholder: 'Enter a short game description.', id: 'exampleTextarea', rows: '3' }),
-	          this.state.errors ? _react2.default.createElement(
-	            'small',
-	            { className: 'form-text text-muted error' },
-	            this.state.errors.description,
-	            _react2.default.createElement('br', null)
-	          ) : null,
 	          _react2.default.createElement(
 	            'small',
 	            { id: 'gameDescription', className: 'form-text text-muted' },
 	            this.state.limit,
 	            ' characters '
-	          )
+	          ),
+	          this.state.errors ? _react2.default.createElement(
+	            'small',
+	            { className: 'form-text text-muted error' },
+	            this.state.errors.description,
+	            _react2.default.createElement('br', null)
+	          ) : null
 	        ),
 	        this.state.img ? _react2.default.createElement(
 	          'p',
@@ -29947,11 +29947,19 @@
 	      var _this4 = this;
 
 	      var loadGames = function loadGames(games) {
-	        return games.map(function (game) {
-	          return _react2.default.createElement(_game2.default, { key: game._id, changeID: _this4.setGameID.bind(_this4),
-	            del: _this4.deleteThisGame.bind(_this4), id: game._id,
-	            title: game.title, summary: game.description, image: game.img });
-	        });
+	        if (games.length >= 1) {
+	          return games.map(function (game) {
+	            return _react2.default.createElement(_game2.default, { key: game._id, changeID: _this4.setGameID.bind(_this4),
+	              del: _this4.deleteThisGame.bind(_this4), id: game._id,
+	              title: game.title, summary: game.description, image: game.img });
+	          });
+	        } else {
+	          return _react2.default.createElement(
+	            'h2',
+	            { className: 'centered centeredTitle' },
+	            'Add Items to the game cabinet!'
+	          );
+	        }
 	      };
 
 	      return _react2.default.createElement(
@@ -29963,8 +29971,8 @@
 	          { className: 'container' },
 	          _react2.default.createElement(
 	            'h1',
-	            null,
-	            'GAMES!'
+	            { className: 'centeredTitle' },
+	            'Collection Corner'
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -31402,7 +31410,7 @@
 
 
 	// module
-	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.buttonHelper {\n  position: relative; }\n\n.deleteButton {\n  position: absolute;\n  right: 20px; }\n\n.editButton {\n  position: absolute;\n  right: 100px; }\n\n.error {\n  color: #ff0033; }\n\n.formPicture {\n  height: 200px;\n  max-width: 300px; }\n\n.games-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.game-container {\n  width: 30%;\n  padding: 1.5%; }\n\n.gameImage {\n  border: 0.125em solid #696969;\n  border-radius: 0.125em;\n  height: 10em;\n  max-width: 15em; }\n\nhr.noStyle {\n  padding: 5px 0;\n  margin: 5px 0;\n  color: black;\n  border-top: .5px solid black; }\n\nhr.style {\n  padding: 5px 0;\n  margin: 5px 0;\n  height: 6px;\n  background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;\n  border: 0; }\n\n.picture {\n  text-align: center; }\n\n.panel-game {\n  border-color: #DE5A3F;\n  padding-bottom: 2em; }\n\n.panel-game > .panel-heading {\n  background: #DE5A3F;\n  color: #ffffff;\n  border-color: #DE5A3F; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
+	exports.push([module.id, ".hello {\n  background-color: #2f5575;\n  height: 100px;\n  font-size: 4em; }\n\n.banner {\n  width: 100%; }\n\n.navbar-add {\n  border-radius: 0px; }\n\n.border-info {\n  border: 8px solid red;\n  padding: 25px; }\n\n.buttonHelper {\n  position: relative; }\n\n.deleteButton {\n  position: absolute;\n  right: 20px; }\n\n.editButton {\n  position: absolute;\n  right: 100px; }\n\n.error {\n  color: #ff0033; }\n\n.formPicture {\n  height: 200px;\n  max-width: 300px; }\n\n.games-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.game-container {\n  width: 30%;\n  padding: 1.5%; }\n\n.gameImage {\n  border: 0.125em solid #696969;\n  border-radius: 0.125em;\n  height: 10em;\n  max-width: 15em; }\n\nhr.noStyle {\n  padding: 5px 0;\n  margin: 5px 0;\n  color: black;\n  border-top: .5px solid black; }\n\nhr.style {\n  padding: 5px 0;\n  margin: 5px 0;\n  height: 6px;\n  background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;\n  border: 0; }\n\n.picture {\n  text-align: center; }\n\n.panel-game {\n  border-color: #DE5A3F;\n  padding-bottom: 2em; }\n\n.panel-game > .panel-heading {\n  background: #DE5A3F;\n  color: #ffffff;\n  border-color: #DE5A3F; }\n\n.centered {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1; }\n\n.centeredTitle {\n  text-align: center; }\n\ntextarea {\n  resize: none;\n  overflow: auto; }\n", ""]);
 
 	// exports
 

@@ -87,6 +87,14 @@ hr.style {
     border-color: #DE5A3F;
 }
 
+.centered {
+  flex-grow: 1;
+}
+
+.centeredTitle {
+  text-align: center;
+}
+
 textarea {
   resize: none;
   overflow: auto;
