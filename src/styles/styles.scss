@@ -17,6 +17,20 @@ $blue: #2f5575;
   padding: 25px;
 }
 
+.buttonHelper {
+  position: relative;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 20px;
+}
+
+.editButton {
+  position: absolute;
+  right: 100px;
+}
+
 .error {
   color: #ff0033;
 }
@@ -34,14 +48,29 @@ $blue: #2f5575;
 
 .game-container {
   width: 30%;
-  padding: 1.5%
+  padding: 1.5%;
 }
 
 .gameImage {
-  border: 2px solid #696969;
-  border-radius: 2px;
-  height: 160px;
-  max-width: 240px;
+  border: 0.125em solid #696969;
+  border-radius: 0.125em;
+  height: 10em;
+  max-width: 15em;
+}
+
+hr.noStyle {
+  padding: 5px 0;
+  margin: 5px 0;
+  color: black;
+  border-top: .5px solid black;
+}
+
+hr.style {
+  padding: 5px 0;
+  margin: 5px 0;
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0;
+    border: 0;
 }
 
 .picture {
@@ -50,6 +79,7 @@ $blue: #2f5575;
 
 .panel-game {
     border-color: #DE5A3F;
+    padding-bottom: 2em;
 }
 .panel-game > .panel-heading {
     background: #DE5A3F;

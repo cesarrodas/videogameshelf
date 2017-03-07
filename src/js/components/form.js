@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { fetchGames, addGame, updateGame, deleteGame } from '../actions';
+import { fetchGames, addGame, updateGame } from '../actions';
 
 function validate(title, description, img){
   let errors = {};
