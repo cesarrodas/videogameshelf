@@ -20,9 +20,9 @@ The Videogame Shelf allows you to store your collection of video game experience
 
 
 
-###Install
-npm install
-npm start
-This project uses a MongoDB database provided by mlab.com.
+### Install
+npm install  
+npm start  
+This project uses a MongoDB database provided by mlab.com.  
 The user would have to add their own link to the mongoUtils.js file as this application
 is currently not hosted anywhere.
