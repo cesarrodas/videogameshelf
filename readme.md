@@ -1,4 +1,4 @@
-#The Videogame Shelf
+# The Videogame Shelf
 
 The Videogame Shelf allows you to store your collection of video game experiences in one place.
 
